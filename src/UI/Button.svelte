@@ -1,12 +1,12 @@
 <script>
-    export let type;
-    export let caption;
-    export let href;
-    export let mode;
+    export let type = "button";
+    export let href = null;
+    export let mode = null;
+    export let color = null;
 </script>
 
 <style>
-    input, textarea {
+    /* input, textarea {
         display: block;
         width: 100%;
         font: inherit;
@@ -28,7 +28,7 @@
     display: block;
         margin-bottom: 0.5rem;
         width: 100%;
-    }
+    } */
 
     .form-control {
         padding: 0.5rem 0;
@@ -36,10 +36,19 @@
         margin: 0.25rem 0;
     }
 
+    .success {
+        color: green;
+        outline: green;
+    }
+
 </style>
 
 {#if href}
-<a href="{href}">{caption}</a>
+<a href="{href}">
+    <slot />
+</a>
 {:else}
-<button class="{mode}" type="{type}">{caption}</button>
+<button class="{mode} {color}" type="{type}" on:click>
+    <slot />
+</button>
 {/if}
